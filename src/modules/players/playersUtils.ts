@@ -8,7 +8,7 @@ export class PlayershUtils {
   private logger = Log.getLogger();
 
 
-  // Get Players 
+  // Get Players  
   public async getPlayers() {
     const players = await mysql.findAll(Tables.PLAYERS, [
       PlayersTable.ID,
