@@ -88,6 +88,8 @@ export class Tables {
   public static readonly LOYALTY_SPECIAL_OFFER_ENGAGEMENT = 'loyaltySpecialOfferEngagment';
   public static readonly DEALERSHIP_LOCATION_TIMING = 'dealershipLocationTiming';
   public static readonly PLAYERS = 'players';
+  public static readonly TEAMPLAYERS = 'teamPlayer';
+  public static readonly TEAM = 'team';
 
 }
 
@@ -162,15 +164,18 @@ export enum AttachmentThumbTable {
 // Users table's fields
 export enum UserTable {
   ID = 'id',
+  EMAIL = 'emailid',
+  PASSWORD = 'password',
+  USERTYPE = 'userType',
+  TEAMID = 'teamId',
+  OLD_USER_ID = 'oldUserId',
   DESIGNATION_ID = 'designationId',
   TIER_ID = 'tierId',
   TITLE = 'title',
   FIRSTNAME = 'firstname',
   LASTNAME = 'lastname',
-  EMAIL = 'email',
   COUNTRY_CODE = 'countryCode',
   MOBILE_NUMBER = 'mobileNumber',
-  PASSWORD = 'password',
   VERIFIED = 'verified',
   BIRTH_DATE = 'birthDate',
   ADDRESS = 'address',
@@ -188,9 +193,17 @@ export enum UserTable {
   EMAIL_VERIFICATION_TOKEN = 'emailVerificationToken',
   CREATED_AT = 'createdAt',
   CDK_CUSTOMER_ID = 'cdkCustomerId',
+  SAB_CUSTOMER_ID = 'sabCustomerId',
   LIFE_TIME_EARNED_POINTS = 'lifeTimeEarnedPoints',
   TOTAL_REDEMPTION = 'totalRedemption',
   CURRENT_POINTS = 'currentPoints',
+  IS_FIRST_LOGIN = 'isFirstLogin',
+  TAP_CUST_ID = 'tapCustomerId',
+  LANGUAGE = 'language',
+  NATIONALITY = 'nationality',
+  PASSPORT_NUMBER = 'passportNumber',
+  SOCIAL_ID = 'socialId',
+  TIER_UPDATE_DATE = 'tierUpdateDate'
 }
 
 // Devices table's fields
@@ -1034,4 +1047,16 @@ export enum PlayersTable {
   BOWLINGRATING = "bowlingRating",
   SOLDTO = "soldTo",
   SPORTS = "sports",
+}
+
+export enum TEAMPLAYERSTable {
+  ID = "id",
+  PLAYERID = "playerid",
+  TEAMID = "teamId"
+}
+
+export enum TEAMTable {
+  ID = "id",
+  NAME = "name",
+  TEAMID = "teamOwnerId"
 }

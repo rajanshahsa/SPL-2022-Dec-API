@@ -14,6 +14,7 @@ const middleware = new Middleware();
 const playersMiddleware = new PlayersMiddleware();
 
 router.get('/',  playersController.getPlayers);
+router.get('/team/:id',  playersController.getOwnPlayers);
 router.get('/:id',  playersController.getPlayer);
 router.post('/:id',  playersController.updatePlayer);
 router.post('/',  playersController.addPlayers);

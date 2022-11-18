@@ -48,4 +48,9 @@ export class PlayersController {
     }
     res.status(309).json({ noOfPlayers: playerAdded });
   };
+
+  public getOwnPlayers = async (req: any, res: Response) => {
+    const players = await this.playersUtils.getOwnPlayers(req.params.id);
+    res.status(players.code).json(players.result);
+  };
 }

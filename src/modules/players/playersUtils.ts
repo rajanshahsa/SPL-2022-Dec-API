@@ -1,5 +1,5 @@
 import * as mysql from 'jm-ez-mysql';
-import { Tables, PlayersTable } from '../../config/tables';
+import { Tables, PlayersTable, TEAMPLAYERSTable } from '../../config/tables';
 import { Log } from '../../helpers/logger';
 import { ResponseBuilder } from '../../helpers/responseBuilder';
 
@@ -44,7 +44,7 @@ export class PlayershUtils {
       PlayersTable.BOWLINGRATING,
       PlayersTable.SOLDTO,
     ],
-    `${PlayersTable.ID} = ? and ${PlayersTable.SPORTS} like %Cricket%`, [id]);
+    `${PlayersTable.ID} = ? and ${PlayersTable.SPORTS} like "%Cricket%"`, [id]);
    return ResponseBuilder.data({ data: player });
   }
 
@@ -67,4 +67,25 @@ export class PlayershUtils {
      return await mysql.query("ALTER TABLE `SPL-Dec`.players AUTO_INCREMENT=1");
      
   };
+
+   // Get Players 
+   public async getOwnPlayers(id) {
+    const players = await mysql.findAll(`${Tables.TEAMPLAYERS} t LEFT JOIN ${Tables.PLAYERS} p 
+    on t.${TEAMPLAYERSTable.PLAYERID} = p.${PlayersTable.ID}`, [
+      `p.${PlayersTable.ID}`,
+      `p.${PlayersTable.NAME}`,
+      `p.${PlayersTable.BASEPRICE}`,
+      `p.${PlayersTable.CURRENTPRICE}`,
+      `p.${PlayersTable.BATTINGSTYLE}`,
+      `p.${PlayersTable.BOWLINGSTYLE}`,
+      `p.${PlayersTable.ISSOLD}`,
+      `p.${PlayersTable.WANTTOBECAPTAIN}`,
+      `p.${PlayersTable.SKILLS}`,
+      `p.${PlayersTable.BATTINGRATING}`,
+      `p.${PlayersTable.BOWLINGRATING}`,
+      `p.${PlayersTable.SOLDTO}`,
+    ],
+    `t.${TEAMPLAYERSTable.TEAMID} = ?`, [+id]);
+   return ResponseBuilder.data({ data: players });
+  }
 }

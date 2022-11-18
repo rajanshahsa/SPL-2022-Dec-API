@@ -1,6 +1,7 @@
 import * as express from 'express';
 import { Constants } from './config/constants';
 import { PlayersRoute } from './modules/players/playersRoute';
+import { AuthRoute } from './modules/auth/authRoute';
 
 
 export class Routes {
@@ -26,6 +27,7 @@ export class Routes {
   public path() {
     const router = express.Router();
 
+    router.use('/auth', AuthRoute);
     router.use('/players', PlayersRoute);
 
     router.all('/*', (req: any, res: any) => {
